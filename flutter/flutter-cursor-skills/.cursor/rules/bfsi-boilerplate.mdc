@@ -1,0 +1,29 @@
+---
+description: Clean Architecture scaffolding, Riverpod, go_router, feature folders, and Material 3 for this BFSI app
+globs: lib/features/**,lib/app/**,lib/main.dart,lib/core/widgets/**
+alwaysApply: false
+---
+
+# BFSI Boilerplate
+
+Full spec: `skills/skills_boilerplate.md`. API: `skills/skills_api_standards.md`. Auth: `skills/skills_auth.md`.
+
+## Rules
+
+- Feature-first: `lib/features/<name>/{domain,data,presentation}/` — dependencies inward only
+- Riverpod: `StateNotifierProvider` per feature; repo provider wires datasource Impl internally
+- Navigation: `go_router` + `AppRoutes` in `lib/app/router/app_router.dart`
+- UI: Material 3 via `AppTheme`; shared widgets in `lib/core/widgets/`
+- Errors: `Either<Failure, T>` from repository up; usecases for business rules
+
+## New feature
+
+Entity → abstract repo → usecase(s) → datasource + model + repo Impl → notifier + screen → route + tests under `test/`.
+
+## Packages (approved)
+
+flutter_riverpod · dio · go_router · hive · flutter_secure_storage · local_auth · dartz · equatable
+
+## Do NOT
+
+Business logic in widgets · Dio outside ApiClient · tokens in Hive · expose datasource as its own provider · hardcode routes/URLs/keys
