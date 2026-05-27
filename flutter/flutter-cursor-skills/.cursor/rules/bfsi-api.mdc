@@ -1,0 +1,37 @@
+---
+description: ApiClient, Dio interceptors, datasources, repositories, models, and API error handling for this BFSI app
+globs: lib/core/network/**,lib/core/error/**,lib/features/**/data/**
+alwaysApply: false
+---
+
+# BFSI API
+
+Full spec: `skills/skills_api_standards.md`. Tokens: `skills/skills_data_storage.md`. Auth interceptor: `skills/skills_auth.md`.
+
+## Rules
+
+- HTTP only via `ApiClient` — never `Dio` in features
+- URLs/timeouts in `ApiConstants` only (`connectTimeout`/`receiveTimeout` 30000ms)
+- Interceptors in order: `AuthInterceptor` → `ErrorInterceptor` → `LogInterceptor` (dev)
+- Datasource: abstract + `Impl`; returns models; casts `response.data`; saves tokens after auth
+- Repository: typed `catch` → `Either<Failure, T>` — never swallow exceptions
+- Tokens: `FlutterSecureStorage` + `AppConstants` keys; `clearAll()` before logout endpoint
+
+## Examples
+
+```dart
+// Repository mapping
+} on ServerException catch (e) {
+  return Left(ServerFailure(message: e.message, statusCode: e.statusCode));
+}
+
+// Model cast
+id: json['id'] as String,
+
+// Pagination
+queryParams: {'page': page, 'limit': limit, 'sort': 'created_at', 'order': 'desc'},
+```
+
+## Do NOT
+
+Hardcode URLs · `dynamic` API return types · store tokens in Hive/SharedPreferences · log passwords/tokens in production · retry silent refresh more than once
