@@ -9,9 +9,15 @@ description: >
   - Add a new domain/feature/entity to an existing project (e.g. "add Product module", "create Order API")
   - Detect which package/directory a new class belongs to and enforce naming conventions
   - Set up JPA, Hibernate auditing, datasource config, or DB migrations
+  - Write, name, or structure Flyway migration scripts (versioned or repeatable)
+  - Design DB schema: UUID PKs, TIMESTAMPTZ columns, named constraints, indexes
+  - Add seed data via repeatable migrations
   - Add entry/exit logging to controller or service methods
   - Set up JWT security, OncePerRequestFilter, SecurityFilterChain, or auth plumbing
+  - Set up OpenAPI / Swagger documentation using springdoc-openapi
   - Add global exception handling, custom error responses, or @ControllerAdvice
+  - Set up cloud storage (S3, GCS) with provider abstraction and pre-signed URLs
+  - Add file upload, download, or delete endpoints with validation
   - Wire up Maven (pom.xml) or Gradle (build.gradle.kts) dependencies
   - Refactor existing code for layer violations, anti-patterns, or naming convention breaches
   - Review PRs for structure violations or missing standards
@@ -58,7 +64,7 @@ When scaffolding a **new project or module**, always ask these questions first a
 
 3. **JWT security** — "Do you want to set up **JWT authentication** now?"
    - If **yes**: read `references/security.md` and generate the full JWT setup.
-   - If **no**: skip `references/security.md` entirely; do not generate any security classes. **Never generate SecurityConfig or any security-related class without explicit user confirmation.**
+   - If **no**: skip entirely. See the **Opt-In Features** table for the full rule.
 
 4. **Pagination** — "Do you want **pagination** on list APIs?"
    - If **yes**: add `Pageable` parameter and return `Page<T>`.
@@ -69,7 +75,14 @@ When scaffolding a **new project or module**, always ask these questions first a
  * author : <name>
  **/` comment at the top of every generated class.
 
-> Only proceed to code generation once all five answers are confirmed.
+6. **Cloud storage** — "Do you want to set up **cloud file storage** (upload / download / pre-signed URLs) now?"
+   - If **yes**: ask the follow-up: "**AWS S3** or **Google Cloud Storage (GCS)**?" then read `references/cloud-storage.md`.
+     - **AWS S3**: generate `S3Config`, `S3StorageServiceImpl`, AWS SDK v2 deps only. Skip all GCS classes.
+     - **GCS**: generate `GcsConfig`, `GcsStorageServiceImpl`, GCS BOM dep only. Skip all S3 classes.
+     - Both paths: also generate `StorageProperties`, `StorageService` interface, `FileController`, both response DTOs, `FileValidationUtil`, all storage exceptions, and the storage config block.
+   - If **no**: skip entirely. See the **Opt-In Features** table for the full rule.
+
+> Only proceed to code generation once all six answers are confirmed.
 
 ---
 
@@ -79,12 +92,19 @@ When scaffolding a **new project or module**, always ask these questions first a
 2. Read **every matching reference file** before generating code.
 3. Generate **complete, compilable classes** — never pseudocode or stubs.
 4. Include the relevant **build dependency snippet** (Gradle or Maven) when a new library is introduced.
+   - **Before adding any dependency**, read the existing `build.gradle` or `pom.xml` to check whether it is already present.
+   - If the dependency already exists, do **not** add it again — not even with a different version or scope.
+   - When multiple reference files are read in one session (e.g. `gradle.md` + `security.md`), deduplicate across all of them before writing to the build file.
 5. Enforce **naming conventions** and **package placement** rules (Section below).
 6. Follow **cross-cutting rules** at all times.
 
 ---
 
 ## Reference Files — Read Before Generating
+
+Reference files are split into two tiers. **Always-included** files are read whenever the matching layer is generated. **Opt-in** files must never be read or acted on until the user explicitly confirms they want that feature (see confirmation rules below).
+
+### Always-Included (read automatically when the matching layer is needed)
 
 | User asks about…                                      | Read this file                              |
 |-------------------------------------------------------|---------------------------------------------|
@@ -95,13 +115,28 @@ When scaffolding a **new project or module**, always ask these questions first a
 | JPA config, datasource, auditing, relationships       | `references/jpa-config.md`                 |
 | Entry/exit logging pattern                            | `references/logging.md`                    |
 | Global exception handling, custom errors              | `references/exception-handling.md`         |
-| JWT filter, SecurityFilterChain, auth                 | `references/security.md`                   |
-| AES / RSA encryption-decryption                       | `references/encryption.md`                 |
-| Gradle (build.gradle.kts) dependencies                | `references/gradle.md`                     |
+| Gradle (build.gradle) dependencies                    | `references/gradle.md`                     |
 | Maven (pom.xml) dependencies                          | `references/maven.md`                      |
 | Full working example (Product Management)             | `references/product-example.md`            |
 
-Always read the relevant file(s) **before** generating code. Multiple files often apply.
+### Opt-In Features — Ask Before Reading or Generating
+
+These features involve custom infrastructure, external integrations, or non-trivial setup. **Never read the reference file or generate any code for these without explicit user confirmation.** Ask the confirmation question, wait for the answer, then proceed only if the user says yes.
+
+| Feature                          | Confirmation question to ask                                              | Reference file                         |
+|----------------------------------|---------------------------------------------------------------------------|----------------------------------------|
+| JWT Security                     | "Do you want to set up **JWT authentication**?"                           | `references/security.md`              |
+| Cloud Storage (S3 / GCS)         | "Do you want to set up **cloud file storage** (upload / download / pre-signed URLs)?" — if yes, follow up: "**AWS S3** or **GCS**?" | `references/cloud-storage.md` |
+| DB Migrations (Flyway)           | "Do you want to set up **Flyway DB migrations**?"                         | `references/db-migration.md`          |
+| Encryption (AES / RSA)           | "Do you want to add **AES / RSA field-level encryption**?"                | `references/encryption.md`            |
+| OpenAPI / Swagger Documentation  | "Do you want to generate **OpenAPI / Swagger documentation**?"            | `references/swagger-documentation.md` |
+| Unit & Integration Tests         | "Do you want me to generate **unit and integration tests**?"              | `references/unit-testing.md`          |
+
+**Rules for opt-in features:**
+- Ask the confirmation question **before** reading the reference file or writing any code for that feature.
+- If the user answers **no** or does not mention the feature: skip the reference file entirely and do not generate any related classes, config, or dependencies.
+- If the user answers **yes**: read the reference file, then ask any follow-up questions required by that feature (e.g. S3 vs GCS, base path for FileController) before generating code.
+- Never bundle opt-in feature questions together — ask each one separately and wait for the answer.
 
 ---
 
@@ -266,6 +301,7 @@ public class ApiResponse<T> {
 | Storing enum as `ORDINAL`                       | Breaks on enum reorder                         |
 | Hardcoded strings / magic numbers in logic      | Use constants                                  |
 | `System.out.println` for logging                | Use SLF4J                                      |
+| Adding a dependency that already exists in the build file | Creates duplicate entries, can cause version conflicts or build warnings |
 
 ---
 

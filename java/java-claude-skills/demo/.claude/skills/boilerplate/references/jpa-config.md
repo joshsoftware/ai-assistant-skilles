@@ -230,44 +230,6 @@ public enum ProductStatus {
 
 **Never use `FetchType.EAGER`** — causes N+1 problems and uncontrolled joins.
 
----
-
-## Flyway Migration Convention
-
-Place migration SQL in `src/main/resources/db/migration/`:
-
-```
-V1__create_categories_table.sql
-V2__create_products_table.sql
-V3__create_product_images_table.sql
-V4__add_discount_column_to_products.sql
-```
-
-Naming: `V{version}__{description}.sql` — double underscore, snake_case description.
-
-```sql
--- V2__create_products_table.sql
-CREATE TABLE products (
-    id            UUID         PRIMARY KEY DEFAULT gen_random_uuid(),
-    name          VARCHAR(200) NOT NULL,
-    sku           VARCHAR(50)  NOT NULL UNIQUE,
-    description   TEXT,
-    price         NUMERIC(12,2) NOT NULL,
-    stock_quantity INT          NOT NULL DEFAULT 0,
-    status        VARCHAR(20)  NOT NULL DEFAULT 'ACTIVE',
-    category_id   UUID         NOT NULL REFERENCES categories(id),
-    created_at    TIMESTAMPTZ  NOT NULL DEFAULT now(),
-    updated_at    TIMESTAMPTZ  NOT NULL DEFAULT now(),
-    created_by    VARCHAR(100),
-    updated_by    VARCHAR(100)
-);
-
-CREATE INDEX idx_product_sku    ON products(sku);
-CREATE INDEX idx_product_status ON products(status);
-```
-
----
-
 ## Repository Patterns — JPA Query Reference
 
 ```java
