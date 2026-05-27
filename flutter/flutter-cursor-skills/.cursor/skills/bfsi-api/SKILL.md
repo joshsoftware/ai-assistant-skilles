@@ -7,8 +7,8 @@ description: Enforces Dio ApiClient, interceptors, datasources, repositories, mo
 
 ## Before coding
 
-1. Read the full project spec: [skills/skills_api_standards.md](../../../skills/skills_api_standards.md)
-2. If touching tokens or secure writes, also read [skills/skills_data_storage.md](../../../skills/skills_data_storage.md) and the [bfsi-auth](../bfsi-auth/SKILL.md) skill for `AuthInterceptor` behaviour
+1. Read the full project spec: [skills-data/skills_api_standards.md](../../../skills-data/skills_api_standards.md)
+2. If touching tokens or secure writes, also read [skills-data/skills_data_storage.md](../../../skills-data/skills_data_storage.md) and the [bfsi-auth](../bfsi-auth/SKILL.md) skill for `AuthInterceptor` behaviour
 3. Match existing code under `lib/core/network/`, `lib/core/error/`, and feature `data/` layers
 
 ## Architecture (non-negotiable)
@@ -167,4 +167,4 @@ Do not expose datasource `Impl` as its own provider.
 
 ## Full reference
 
-Detailed tables, samples, and contract: [reference.md](reference.md) → canonical [skills/skills_api_standards.md](../../../skills/skills_api_standards.md).
+Detailed tables, samples, and contract: [reference.md](reference.md) → canonical [skills-data/skills_api_standards.md](../../../skills-data/skills_api_standards.md).

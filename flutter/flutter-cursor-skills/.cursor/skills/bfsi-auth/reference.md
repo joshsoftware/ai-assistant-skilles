@@ -1,6 +1,6 @@
 # Authentication & Authorisation — Full Specification
 
-**Canonical source:** [skills/skills_auth.md](../../../skills/skills_auth.md)
+**Canonical source:** [skills-data/skills_auth.md](../../../skills-data/skills_auth.md)
 
 Read that file in full before implementing or modifying any auth feature. It contains:
 
@@ -19,4 +19,4 @@ Read that file in full before implementing or modifying any auth feature. It con
 13. Folder structure
 14. Do NOT list
 
-Keep `skills/skills_auth.md` and this skill in sync when standards change.
+Keep `skills-data/skills_auth.md` and this skill in sync when standards change.

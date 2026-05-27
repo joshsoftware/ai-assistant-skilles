@@ -1,6 +1,6 @@
 # Boilerplate — Full Specification
 
-**Canonical source:** [skills/skills_boilerplate.md](../../../skills/skills_boilerplate.md)
+**Canonical source:** [skills-data/skills_boilerplate.md](../../../skills-data/skills_boilerplate.md)
 
 Read that file before adding a new feature, screen, or package. It defines:
 
@@ -18,10 +18,10 @@ Read that file before adding a new feature, screen, or package. It defines:
 
 | Area | Skill / spec |
 |------|----------------|
-| API | [bfsi-api](../bfsi-api/SKILL.md) · `skills/skills_api_standards.md` |
-| Auth | [bfsi-auth](../bfsi-auth/SKILL.md) · `skills/skills_auth.md` |
-| Storage | `skills/skills_data_storage.md` |
-| Caching | `skills/skills_caching.md` |
-| Tests | `skills/skills_unit_testing.md` |
+| API | [bfsi-api](../bfsi-api/SKILL.md) · `skills-data/skills_api_standards.md` |
+| Auth | [bfsi-auth](../bfsi-auth/SKILL.md) · `skills-data/skills_auth.md` |
+| Storage | `skills-data/skills_data_storage.md` |
+| Caching | `skills-data/skills_caching.md` |
+| Tests | `skills-data/skills_unit_testing.md` |
 
-Keep `skills/skills_boilerplate.md` and this skill in sync when standards change.
+Keep `skills-data/skills_boilerplate.md` and this skill in sync when standards change.

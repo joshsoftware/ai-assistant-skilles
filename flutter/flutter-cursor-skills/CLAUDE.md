@@ -1,7 +1,7 @@
 # AI Project Instructions
 
 Read all files inside:
-- Skills/
+- skills-data/
 
 Follow all standards while generating code.
 
@@ -16,17 +16,17 @@ Priority:
 
 ## Skills Index
 
-All coding standards are defined in the `Skills/` folder.
+All coding standards are defined in the `skills-data/` folder.
 Before generating or modifying any code, read the relevant skill file and follow it exactly.
 
-| Skill File | When to Read |
-|---|---|
-| [`Skills/skills_boilerplate.md`](Skills/skills_boilerplate.md) | Adding a new feature, screen, or package |
-| [`Skills/skills_api_standards.md`](Skills/skills_api_standards.md) | Creating or modifying any API call, endpoint, interceptor, or model |
-| [`Skills/skills_data_storage.md`](Skills/skills_data_storage.md) | Storing data locally (Hive) or securely (tokens, PINs) |
-| [`Skills/skills_caching.md`](Skills/skills_caching.md) | Adding or modifying caching in any repository |
-| [`Skills/skills_auth.md`](Skills/skills_auth.md) | Implementing login, logout, biometric, session, or role-based access |
-| [`Skills/skills_unit_testing.md`](Skills/skills_unit_testing.md) | Writing unit tests, widget tests, or mocks |
+| Spec file | Cursor skill (optional) | When to Read |
+|---|---|---|
+| [`skills-data/skills_boilerplate.md`](skills-data/skills_boilerplate.md) | `@bfsi-boilerplate` | Adding a new feature, screen, or package |
+| [`skills-data/skills_api_standards.md`](skills-data/skills_api_standards.md) | `@bfsi-api` | Creating or modifying any API call, endpoint, interceptor, or model |
+| [`skills-data/skills_data_storage.md`](skills-data/skills_data_storage.md) | `@bfsi-storage` | Storing data locally (Hive) or securely (tokens, PINs) |
+| [`skills-data/skills_caching.md`](skills-data/skills_caching.md) | `@bfsi-caching` | Adding or modifying caching in any repository |
+| [`skills-data/skills_auth.md`](skills-data/skills_auth.md) | `@bfsi-auth` | Implementing login, logout, biometric, session, or role-based access |
+| [`skills-data/skills_unit_testing.md`](skills-data/skills_unit_testing.md) | `@bfsi-testing` | Writing unit tests, widget tests, or mocks |
 
 ---
 

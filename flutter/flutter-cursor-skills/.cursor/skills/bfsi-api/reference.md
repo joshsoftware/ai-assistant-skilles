@@ -1,6 +1,6 @@
 # API Standards — Full Specification
 
-**Canonical source:** [skills/skills_api_standards.md](../../../skills/skills_api_standards.md)
+**Canonical source:** [skills-data/skills_api_standards.md](../../../skills-data/skills_api_standards.md)
 
 Read that file in full before implementing or modifying any API layer code. It contains:
 
@@ -17,4 +17,4 @@ Read that file in full before implementing or modifying any API layer code. It c
 11. Riverpod provider wiring
 12. Do NOT list
 
-Keep `skills/skills_api_standards.md` and this skill in sync when standards change.
+Keep `skills-data/skills_api_standards.md` and this skill in sync when standards change.

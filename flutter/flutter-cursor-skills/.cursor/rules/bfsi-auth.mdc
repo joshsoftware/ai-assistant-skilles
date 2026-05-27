@@ -6,7 +6,7 @@ alwaysApply: false
 
 # BFSI Auth
 
-Full spec: `skills/skills_auth.md`. Secure storage: `skills/skills_data_storage.md`.
+Full spec: `skills-data/skills_auth.md`. Secure storage: `skills-data/skills_data_storage.md`.
 
 ## Rules
 

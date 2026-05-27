@@ -6,7 +6,7 @@ alwaysApply: false
 
 # BFSI API
 
-Full spec: `skills/skills_api_standards.md`. Tokens: `skills/skills_data_storage.md`. Auth interceptor: `skills/skills_auth.md`.
+Full spec: `skills-data/skills_api_standards.md`. Tokens: `skills-data/skills_data_storage.md`. Auth interceptor: `skills-data/skills_auth.md`.
 
 ## Rules
 

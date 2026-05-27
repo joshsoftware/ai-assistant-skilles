@@ -6,7 +6,7 @@ alwaysApply: false
 
 # BFSI Boilerplate
 
-Full spec: `skills/skills_boilerplate.md`. API: `skills/skills_api_standards.md`. Auth: `skills/skills_auth.md`.
+Full spec: `skills-data/skills_boilerplate.md`. API: `skills-data/skills_api_standards.md`. Auth: `skills-data/skills_auth.md`.
 
 ## Rules
 

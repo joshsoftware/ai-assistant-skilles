@@ -7,13 +7,13 @@ description: Scaffolds features, screens, and packages using Clean Architecture,
 
 ## Before coding
 
-1. Read the full project spec: [skills/skills_boilerplate.md](../../../skills/skills_boilerplate.md)
+1. Read the full project spec: [skills-data/skills_boilerplate.md](../../../skills-data/skills_boilerplate.md)
 2. Pull in domain skills as needed:
-   - API layer → [bfsi-api](../bfsi-api/SKILL.md) / [skills/skills_api_standards.md](../../../skills/skills_api_standards.md)
-   - Auth → [bfsi-auth](../bfsi-auth/SKILL.md) / [skills/skills_auth.md](../../../skills/skills_auth.md)
-   - Storage → [skills/skills_data_storage.md](../../../skills/skills_data_storage.md)
-   - Caching → [skills/skills_caching.md](../../../skills/skills_caching.md)
-   - Tests → [skills/skills_unit_testing.md](../../../skills/skills_unit_testing.md)
+   - API layer → [bfsi-api](../bfsi-api/SKILL.md) / [skills-data/skills_api_standards.md](../../../skills-data/skills_api_standards.md)
+   - Auth → [bfsi-auth](../bfsi-auth/SKILL.md) / [skills-data/skills_auth.md](../../../skills-data/skills_auth.md)
+   - Storage → [skills-data/skills_data_storage.md](../../../skills-data/skills_data_storage.md)
+   - Caching → [skills-data/skills_caching.md](../../../skills-data/skills_caching.md)
+   - Tests → [skills-data/skills_unit_testing.md](../../../skills-data/skills_unit_testing.md)
 3. Match existing layout under `lib/app/`, `lib/core/`, and `lib/features/<feature>/`
 
 ## HOW to start using this skill
@@ -182,4 +182,4 @@ Session timeout, biometrics, SSL pinning: implement per [bfsi-auth](../bfsi-auth
 
 ## Full reference
 
-Canonical spec and sync notes: [reference.md](reference.md) → [skills/skills_boilerplate.md](../../../skills/skills_boilerplate.md).
+Canonical spec and sync notes: [reference.md](reference.md) → [skills-data/skills_boilerplate.md](../../../skills-data/skills_boilerplate.md).

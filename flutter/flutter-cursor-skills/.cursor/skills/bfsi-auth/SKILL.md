@@ -7,8 +7,8 @@ description: Implements JWT auth, silent token refresh, biometric re-auth, sessi
 
 ## Before coding
 
-1. Read the full project spec: [skills/skills_auth.md](../../../skills/skills_auth.md)
-2. If touching storage keys or secure writes, also read [skills/skills_data_storage.md](../../../skills/skills_data_storage.md)
+1. Read the full project spec: [skills-data/skills_auth.md](../../../skills-data/skills_auth.md)
+2. If touching storage keys or secure writes, also read [skills-data/skills_data_storage.md](../../../skills-data/skills_data_storage.md)
 3. Match existing code under `lib/core/auth/`, `lib/core/network/interceptors/`, and `lib/features/auth/`
 
 ## Architecture (non-negotiable)
@@ -116,4 +116,4 @@ lib/features/auth/      domain → data → presentation (Clean Architecture)
 
 ## Full reference
 
-Detailed flows, code samples, tables, and security checklist: [reference.md](reference.md) → canonical [skills/skills_auth.md](../../../skills/skills_auth.md).
+Detailed flows, code samples, tables, and security checklist: [reference.md](reference.md) → canonical [skills-data/skills_auth.md](../../../skills-data/skills_auth.md).

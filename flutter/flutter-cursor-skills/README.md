@@ -16,7 +16,7 @@ This repository is set up for **BFSI-grade Flutter development** with strong def
 Copy/paste this as the *first* instruction before asking the agent to make changes:
 
 ```text
-Read CLAUDE.md and all files in Skills/.
+Read CLAUDE.md and the relevant files in skills-data/.
 Follow them exactly for any code you generate or modify.
 ```
 
@@ -30,30 +30,35 @@ Follow them exactly for any code you generate or modify.
 - **Security**: never log secrets (tokens, OTPs, MPINs).
 - **Testing**: `test/` mirrors `lib/`, with the coverage targets from `CLAUDE.md`.
 
-## Skills: what they are, and when to use them
+## Skills: specs vs Cursor skills
 
-All implementation standards live in the `Skills/` folder. Treat each skill file as a **checklist**: before you code in that area, read the relevant file and follow it.
+| Layer | Location | How to use |
+|-------|----------|------------|
+| **Full specs** | `skills-data/*.md` | Canonical checklists — read before coding |
+| **Agent summaries** | `.cursor/skills/bfsi-*/` | Mention in chat: `@bfsi-api`, `@bfsi-auth`, etc. |
+| **Auto hints** | `.cursor/rules/bfsi-*.mdc` | Apply when editing matching `lib/` or `test/` paths |
 
-### Skills index
+### Spec index (`skills-data/`)
 
-- **`Skills/skills_boilerplate.md`**: adding a new feature, screen, or package
-- **`Skills/skills_api_standards.md`**: any API call/model/interceptor/API-layer change
-- **`Skills/skills_data_storage.md`**: local storage (Hive) and secure storage rules (tokens/PINs)
-- **`Skills/skills_caching.md`**: caching behavior, TTL rules, cache keys, invalidation
-- **`Skills/skills_auth.md`**: login/logout/biometric/session/role-based access
-- **`Skills/skills_unit_testing.md`**: unit/widget tests, mocks, naming, and structure
+- **`skills_boilerplate.md`** → `@bfsi-boilerplate` — new feature, screen, or package
+- **`skills_api_standards.md`** → `@bfsi-api` — API calls, models, interceptors
+- **`skills_data_storage.md`** → `@bfsi-storage` — Hive + secure storage
+- **`skills_caching.md`** → `@bfsi-caching` — repository caching, TTLs, invalidation
+- **`skills_auth.md`** → `@bfsi-auth` — login, session, biometrics, roles
+- **`skills_unit_testing.md`** → `@bfsi-testing` — unit/widget tests, mocks
 
 ### Quick decision guide
 
-- If you’re touching **HTTP, models, interceptors, parsing** → read `skills_api_standards.md`
-- If you’re touching **tokens, PIN/MPIN, persistence** → read `skills_data_storage.md` (+ `skills_auth.md` if auth-related)
-- If you’re touching **session/login/roles/biometrics** → read `skills_auth.md`
-- If you’re adding **repositories caching or TTLs** → read `skills_caching.md`
-- If you’re adding **new feature/screen/module** → read `skills_boilerplate.md`
-- If you’re writing or changing **tests** → read `skills_unit_testing.md`
+- **HTTP, models, interceptors** → `skills_api_standards.md` or `@bfsi-api`
+- **Tokens, PIN/MPIN, persistence** → `skills_data_storage.md` or `@bfsi-storage` (+ auth spec if needed)
+- **Session, login, roles, biometrics** → `skills_auth.md` or `@bfsi-auth`
+- **Repository caching or TTLs** → `skills_caching.md` or `@bfsi-caching`
+- **New feature/screen/module** → `skills_boilerplate.md` or `@bfsi-boilerplate`
+- **Tests** → `skills_unit_testing.md` or `@bfsi-testing`
+- **Responsive layout** → `@flutter-build-responsive-layout` (`.agents/skills/`)
 
 ## Contributing (for humans and agents)
 
-- Always align changes with `CLAUDE.md` first.
-- Read the relevant `Skills/*.md` before implementing.
+- Align changes with `CLAUDE.md` first.
+- Read the relevant `skills-data/*.md` (or `@` the Cursor skill) before implementing.
 - Keep secrets out of logs and out of the repo.
