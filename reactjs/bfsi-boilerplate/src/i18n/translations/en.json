@@ -1,0 +1,54 @@
+{
+  "app": {
+    "name": "bfsi-boilerplate",
+    "loading": "Loading…",
+    "empty": "Nothing to show"
+  },
+  "errors": {
+    "network": {
+      "title": "Can't reach the server",
+      "description": "Check your internet connection and try again."
+    },
+    "timeout": {
+      "title": "Request took too long",
+      "description": "Please try again."
+    },
+    "session_expired": {
+      "title": "Session expired",
+      "description": "Please sign in again."
+    },
+    "forbidden": {
+      "title": "Not allowed",
+      "description": "You don't have access to this. Contact your administrator if you think this is wrong."
+    },
+    "not_found": {
+      "title": "Not found",
+      "description": "The page or resource you were looking for doesn't exist."
+    },
+    "validation": {
+      "title": "Check your inputs",
+      "description": "Some fields need attention before we can proceed."
+    },
+    "rate_limited": {
+      "title": "Too many attempts",
+      "description": "Please wait a moment and try again."
+    },
+    "server": {
+      "title": "Something went wrong on our end",
+      "description": "Please try again in a moment. (Ref: {{ref}})"
+    },
+    "generic": {
+      "title": "Something went wrong",
+      "description": "Please try again. If it persists, contact support with reference {{ref}}."
+    }
+  },
+  "pii": {
+    "reveal": {
+      "pan": "Reveal PAN",
+      "aadhaar": "Reveal Aadhaar",
+      "account": "Reveal account number",
+      "mobile": "Reveal mobile",
+      "email": "Reveal email"
+    }
+  }
+}

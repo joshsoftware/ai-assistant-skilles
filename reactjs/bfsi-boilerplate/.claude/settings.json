@@ -1,0 +1,286 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "deny": [
+      "Bash(rm -rf /*)",
+      "Bash(git push --force *main*)",
+      "Bash(git push --force *master*)",
+      "Bash(git push --force *production*)",
+      "Bash(git push --force *staging*)"
+    ],
+    "allow": [
+      "Bash(pnpm:*)",
+      "Bash(npx:*)",
+      "Bash(node:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(git show:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git pull:*)",
+      "Bash(git fetch:*)",
+      "Bash(gh pr:*)",
+      "Bash(gh repo:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Bash(rm -rf *)",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/block-destructive.sh",
+            "args": [],
+            "statusMessage": "[bfsi] checking destructive shell"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Bash(git push --force *)",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/block-force-push.sh",
+            "args": [],
+            "statusMessage": "[bfsi] checking force push"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Bash(git push --force-with-lease *)",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/block-force-push.sh",
+            "args": [],
+            "statusMessage": "[bfsi] checking force push with lease"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/protect-skill-mandated.sh",
+            "args": [],
+            "statusMessage": "[bfsi] checking skill-mandated files"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/protect-files.sh",
+            "args": [],
+            "statusMessage": "[bfsi] checking protected files"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/scan-secrets.sh",
+            "args": [],
+            "statusMessage": "[bfsi] scanning for secret patterns"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/env-file-convention.sh",
+            "args": [],
+            "statusMessage": "[bfsi] checking env file naming convention"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/asset-location-guard.sh",
+            "args": [],
+            "statusMessage": "[bfsi] checking asset location (src/assets/)"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/no-fabrication-guard.sh",
+            "args": [],
+            "statusMessage": "[bfsi] checking for fabricated imports"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/git-author-guard.sh",
+            "args": [],
+            "statusMessage": "[bfsi] verifying commit author"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/format.sh",
+            "args": [],
+            "async": true,
+            "timeout": 60,
+            "statusMessage": "[bfsi] formatting (async)"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/lint.sh",
+            "args": [],
+            "async": true,
+            "timeout": 60,
+            "statusMessage": "[bfsi] linting (async)"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/scan-pii.sh",
+            "args": [],
+            "statusMessage": "[bfsi] scanning for PII patterns"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Write(*.tsx)",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/a11y-check.sh",
+            "args": [],
+            "async": true,
+            "timeout": 120,
+            "statusMessage": "[bfsi] a11y check (async)"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/inject-context.sh",
+            "args": [],
+            "statusMessage": "[bfsi] loading project context"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/verify-clean.sh",
+            "args": [],
+            "async": true,
+            "timeout": 90,
+            "statusMessage": "[bfsi] post-turn verification (async)"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "agent",
+            "model": "sonnet",
+            "timeout": 300,
+            "statusMessage": "[bfsi] reviewing diff against project standards",
+            "prompt": "You are a post-turn code-review gate. The user just finished a coding turn. Decide whether the diff is clean enough to stop, or whether to ask the user if they want Claude to fix issues before stopping.\n\n# Step 0 — Skip-list\n\nLook at $ARGUMENTS for the `stop_hook_active` field. If it is `true`, return `{ \"ok\": true }` immediately — Claude is already in a stop-hook loop and we should not stack another round.\n\nRun `git diff --name-only` and `git diff --stat`. If the working tree is clean, or the only changes are to docs (`*.md`, `docs/`, `README*`, `LICENSE`), test fixtures, or `.gitignore`, return `{ \"ok\": true }` — no review needed.\n\n# Step 1 — Classify findings strictly\n\nRead the uncommitted diff (`git diff`) and the relevant skill files under `.claude/skills/` (especially `axios-auth`, `constants-organization`, and `tanstack-services`). Cross-reference against `CLAUDE.md` at the project root.\n\nClassify every finding strictly by this rubric:\n\n**P0 — CRITICAL (must fix before merge)**:\n- Hardcoded secret/key/token in source\n- PAN / Aadhaar / account# / CVV / OTP / password in `console.*`, `localStorage`, URL params, Sentry/telemetry, or error message\n- `dangerouslySetInnerHTML` without an explicit sanitiser\n- Weak crypto: md5, sha1, `Math.random()` for security, AES-ECB, custom \"scrambling\"\n- Auth token stored anywhere other than `setAuthToken(axios, token)` (no localStorage)\n- API response used without `schema.parse(...)` (no Zod validation)\n- `rm -rf` or destructive shell in source\n- `eval`, `new Function(...)`, `Function(...)` calls\n\n**P1 — HIGH (should fix this PR)**:\n- `any` type in app code (excluding `*.test.*` fixtures)\n- `<Route>` without `<ProtectedRoute permission=\"...\">` for non-public routes\n- PII field rendered as `{user.pan}` (or similar) without `<PIIMaskedDisplay>`\n- Inline regex / URL string / queryKey instead of going through `regexConstants.ts` / `endPoints.ts` / `queryKeys.ts`\n- Missing idempotency-key on a state-changing mutation\n- Form field with `autoComplete=\"on\"` for PII\n- Missing `schema.parse(raw)` on a TanStack service response\n\n**P2 — MEDIUM/LOW (track separately, DO NOT prompt for these)**:\n- Naming, style, missing tests, unused vars, magic numbers, file length\n- Comment quality, redundant code, refactor opportunities\n\n# Step 2 — Branch on findings\n\n**If no P0/P1 findings exist**: return `{ \"ok\": true }` and you are done. Do NOT prompt the user.\n\n**If P0 and/or P1 findings exist**: continue to Step 3.\n\n# Step 3 — Show findings + ask the user\n\nFirst, print the findings as a numbered list (one line per finding):\n\n  ```\n  P0/P1 findings in the current diff:\n    1. [P0] file/path.ts:42 — Hardcoded API key (fix: move to env var)\n    2. [P1] file/path.tsx:88 — Missing <PIIMaskedDisplay> on user.pan\n    ...\n  ```\n\nThen use the `AskUserQuestion` tool with EXACTLY this shape:\n\n  question: \"Found N P0/P1 issue(s). What should I do?\"\n  header: \"Auto-review\"\n  multiSelect: false\n  options:\n    - label: \"Fix all now\"\n      description: \"I'll resolve every P0/P1 finding in this turn before stopping.\"\n    - label: \"Fix selected ones\"\n      description: \"Show me a checkbox list of just the P0/P1 findings; I'll fix only what you tick.\"\n    - label: \"Skip — let me handle them\"\n      description: \"Don't touch the code. The findings list above is for your reference.\"\n\nIf user picked \"Fix all now\":\n  Return `{ \"ok\": false, \"reason\": \"Fix the following P0/P1 findings before stopping:\\n\\n<full numbered list including file:line and concrete fix for each>\" }`\n\nIf user picked \"Fix selected ones\":\n  Use AskUserQuestion AGAIN with `multiSelect: true` and one option per finding. Then return `{ \"ok\": false, \"reason\": \"Fix ONLY these selected P0/P1 findings:\\n<the picked subset with file:line and fix>\" }`.\n\nIf user picked \"Skip\":\n  Return `{ \"ok\": true }`. The findings list is already printed; the user has it.\n\n# Hard rules\n\n- Be precise. Cite `file:line` for every finding. Vague findings = unfixable findings.\n- Do not invent findings. If you cannot identify a concrete file:line that violates a rule, do not include it.\n- Never block on P2. Mention them at most once at the end of the printed list, as info.\n- If the AskUserQuestion tool is unavailable in this context, default to printing the findings + returning `{ \"ok\": true }` so the user is not blocked.\n\n$ARGUMENTS"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "auto|manual",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/save-compliance-context.sh",
+            "args": [],
+            "statusMessage": "[bfsi] snapshotting compliance context"
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "matcher": "auto|manual",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/restore-compliance-context.sh",
+            "args": [],
+            "statusMessage": "[bfsi] restoring compliance context"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/subagent-start.sh",
+            "args": [],
+            "statusMessage": "[bfsi] tracking subagent start"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/subagent-stop.sh",
+            "args": [],
+            "statusMessage": "[bfsi] recording subagent completion"
+          }
+        ]
+      }
+    ]
+  }
+}
