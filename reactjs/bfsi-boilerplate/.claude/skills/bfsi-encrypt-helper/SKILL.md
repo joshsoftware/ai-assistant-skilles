@@ -14,8 +14,6 @@ Reference for `@/lib/encryption`. Uses the browser's Web Crypto API — no exter
 | AES-GCM 256     | Symmetric encryption of data  | `aesgcm.encrypt`, `aesgcm.decrypt`   |
 | RSA-OAEP-SHA256 | Asymmetric encryption of keys | `rsaoaep.encrypt`, `rsaoaep.decrypt` |
 | PBKDF2-SHA256   | Derive key from password      | `pbkdf2.deriveKey`                   |
-| HKDF-SHA256     | Derive key from existing key  | `hkdf.deriveKey`                     |
-| ECDSA-P256      | Sign / verify                 | `ecdsa.sign`, `ecdsa.verify`         |
 
 ## Common patterns
 
