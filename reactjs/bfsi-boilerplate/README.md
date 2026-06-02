@@ -168,7 +168,7 @@ pnpm analyze       # Bundle treemap → dist/stats.html (auto-opens)
 These are **non-negotiable** and enforced by hooks, lint rules, and review agents.
 
 1. **Tokens never in `localStorage`.** Use `setAuthToken(axiosInstance, token)` from `@/lib/http` at login — the token lives in memory only.
-2. **All API responses pass through `Zod .parse()`.** No raw types crossing the network boundary. See the `tanstack-services` skill.
+2. **API request/response shapes are typed with TypeScript interfaces** from the feature's `types.ts`, passed explicitly to the HTTP helpers (`POST<IRequest, IResponse>`). These are compile-time types. See the `tanstack-services` skill.
 3. **PII fields display via `<PIIMaskedDisplay>`.** Never render PAN / Aadhaar / account number / customer ID directly.
 4. **No card data in HTML inputs.** Use a tokenised card input component; flag any plain `<input>` capturing PAN/CVV.
 5. **Every route is a `<ProtectedRoute permission="...">`** with an explicit permission string. Public routes are the exception, not the default.
