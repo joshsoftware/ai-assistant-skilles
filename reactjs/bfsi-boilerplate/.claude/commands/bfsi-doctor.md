@@ -14,7 +14,7 @@ Run each check, report status (✅ / ⚠️ / ❌), and remediation for any fail
 ### Environment
 
 1. **Node version** — `node --version`. Should be ≥ 20.11.0.
-2. **pnpm version** — `pnpm --version`. Should be ≥ 9.0.0.
+2. **pnpm version** — `pnpm --version`. Should be ≥ 11.0.0.
 3. **Git** — `git --version`. Any modern git.
 4. **In a project root** — check for `package.json` in `$CLAUDE_PROJECT_DIR`.
 

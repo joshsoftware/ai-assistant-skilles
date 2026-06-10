@@ -61,7 +61,7 @@ It bakes in:
 ## Prerequisites
 
 - **Node.js** ≥ 20.x (LTS)
-- **pnpm** ≥ 9.x — `npm install -g pnpm` (this repo standardises on pnpm; do not mix with npm/yarn)
+- **pnpm** ≥ 11.x — `npm install -g pnpm` (this repo standardises on pnpm; do not mix with npm/yarn)
 - **Git** ≥ 2.40
 - A modern browser (Chromium-based recommended for Playwright)
 

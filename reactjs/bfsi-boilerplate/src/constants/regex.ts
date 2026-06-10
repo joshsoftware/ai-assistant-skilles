@@ -39,7 +39,7 @@ export const GSTIN_REGEX = PII_PATTERNS.gstin;
  * Tighten per your org's policy (length, banned-list, history) before launch.
  */
 export const PASSWORD_REGEX =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=\[\]{};:'",.<>/?\\|`~]).{8,}$/;
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=[\]{};:'",.<>/?\\|`~]).{8,}$/;
 
 /** Numeric OTP — 6 digits is the BFSI standard. */
 export const OTP_REGEX = /^\d{6}$/;
