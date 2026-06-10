@@ -81,10 +81,5 @@
     "*.{png,jpg,jpeg,gif,webp,avif,svg,ico,bmp,tiff,woff,woff2,ttf,otf,eot}": [
       "node .husky/check-asset-location.mjs"
     ]
-  },
-  "pnpm": {
-    "overrides": {
-      "use-sync-external-store": "1.6.0"
-    }
   }
 }

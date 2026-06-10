@@ -141,7 +141,7 @@ function FormInputSection(): ReactElement {
       <form
         className="rounded-lg border border-border bg-card p-6 sm:grid sm:grid-cols-2 sm:gap-4"
         onSubmit={form.handleSubmit((values) => {
-          console.info('[showcase] form submitted', { ...values, password: '[redacted]' });
+          console.warn('[showcase] form submitted', { ...values, password: '[redacted]' });
         })}
         noValidate
       >

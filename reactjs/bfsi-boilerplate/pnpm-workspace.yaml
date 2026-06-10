@@ -1,0 +1,12 @@
+# pnpm 10+ reads project-wide settings from here (the "pnpm" field in
+# package.json is no longer honoured). See https://pnpm.io/settings
+
+# Dependency override (migrated from package.json "pnpm.overrides").
+overrides:
+  use-sync-external-store: 1.6.0
+
+# pnpm 10+ does NOT run dependency install/build scripts unless allow-listed.
+# These two ship native binaries that must build at install time.
+onlyBuiltDependencies:
+  - '@swc/core'
+  - esbuild
