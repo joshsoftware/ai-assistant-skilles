@@ -28,6 +28,13 @@ Before generating or modifying any code, read the relevant skill file and follow
 | [`Skills/skills_auth.md`](Skills/skills_auth.md) | Implementing login, logout, biometric, session, or role-based access |
 | [`Skills/skills_unit_testing.md`](Skills/skills_unit_testing.md) | Writing unit tests, widget tests, or mocks |
 
+### Cursor skills (`.cursor/skills/`)
+
+| Skill | When to Read |
+|---|---|
+| [`.cursor/skills/flutter-pr-review/SKILL.md`](.cursor/skills/flutter-pr-review/SKILL.md) | Reviewing a PR, branch diff, or before merge sign-off |
+| [`.cursor/skills/bfsi-auth/SKILL.md`](.cursor/skills/bfsi-auth/SKILL.md) | Auth/token/session/route-guard changes (implementation) |
+
 ---
 
 ## Architecture Rules

@@ -52,6 +52,15 @@ All implementation standards live in the `Skills/` folder. Treat each skill file
 - If you’re adding **new feature/screen/module** → read `skills_boilerplate.md`
 - If you’re writing or changing **tests** → read `skills_unit_testing.md`
 
+## Cursor Agent skills (`.cursor/skills/`)
+
+| Skill | When to use |
+|-------|-------------|
+| [`flutter-pr-review`](.cursor/skills/flutter-pr-review/SKILL.md) | Reviewing a Flutter PR, branch diff, or asking for a structured code review |
+| [`bfsi-auth`](.cursor/skills/bfsi-auth/SKILL.md) | Implementing or changing login, tokens, biometrics, session, or route guards |
+
+Invoke explicitly in Cursor (e.g. mention `flutter-pr-review` or attach the skill). PR reviews follow severity levels (Critical / Major / Minor) and the output template in the skill.
+
 ## Contributing (for humans and agents)
 
 - Always align changes with `CLAUDE.md` first.
