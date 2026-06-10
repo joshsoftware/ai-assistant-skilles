@@ -62,7 +62,7 @@ The bootstrap script automatically prefers FVM and falls back to Flutter.
 # Download Bootstrap Script
 
 ```bash
-curl -O https://raw.githubusercontent.com/joshsoftware/ai-assistant-skilles/tree/main/flutter/bootstrap/create_flutter_project.sh
+curl -O https://raw.githubusercontent.com/joshsoftware/ai-assistant-skilles/main/flutter/bootstrap/create_flutter_project.sh
 ```
 
 Make it executable:
