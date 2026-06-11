@@ -20,7 +20,7 @@ ${DIRTY:-(clean)}
 BFSI conventions reminder (in effect for this session):
   - <ProtectedRoute permission=...> for all routes
   - PII via <PIIMaskedDisplay>
-  - Zod parse on every API response
+  - Network shapes are TS interfaces; Zod for form input + env only (responses NOT runtime-validated)
   - Conventional Commits with security/compliance types
 "
 

@@ -39,7 +39,7 @@ Pair with `/bfsi-protected-route` when the new path needs `<ProtectedRoute permi
 
 3. **Rewire each match** to `ROUTES.<key>`, adding `import { ROUTES } from '@/constants/routes'` where needed.
 
-4. **Verify** with `pnpm typecheck`. If any usage can't be auto-rewired (computed paths, template strings with interpolation, third-party config), the skill surfaces a list for manual review rather than silently skipping.
+4. **Verify** with `npm run typecheck`. If any usage can't be auto-rewired (computed paths, template strings with interpolation, third-party config), the skill surfaces a list for manual review rather than silently skipping.
 
 ## Example
 

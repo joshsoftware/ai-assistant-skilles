@@ -124,7 +124,7 @@ Given a component, page, or route, identify a11y issues with file:line citations
 
 - `Read` the file and identify issues from JSX patterns
 - `Grep` for common a11y anti-patterns (`<div.*onClick`, `outline: none`, `aria-hidden="false"`)
-- `Bash` to run axe-core via the project's `pnpm dlx @axe-core/cli` if a URL is provided
+- `Bash` to run axe-core via the project's `npx @axe-core/cli` if a URL is provided
 
 ## What you do NOT do
 - Apply fixes yourself.

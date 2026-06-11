@@ -30,12 +30,12 @@ The user will specify scope. If they say "compliance audit", default to **RBI An
 | §       | Section title                                       | Frontend evidence to look for                                                                                                               | Where to check                                                          |
 | ------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | §1      | Inventory Management of Business IT Assets          | PII fields catalogued; data classification consistently applied                                                                             | grep for PII variables; `<PIIMaskedDisplay>` usage; schema files        |
-| §2      | Preventing execution of unauthorised software       | `pnpm audit` clean; no untrusted CDN script tags; CSP `script-src` restricts origins                                                        | `package.json`, `vite.config.ts` security headers, CI workflow          |
-| §6      | Application Security Life Cycle (ASLC)              | Secure coding (Zod parse, no `eval`, no `dangerouslySetInnerHTML`); OWASP-aware (§6.7)                                                      | `bfsi-security-reviewer` output; `dangerouslySetInnerHTML` audit        |
+| §2      | Preventing execution of unauthorised software       | `npm audit` clean; no untrusted CDN script tags; CSP `script-src` restricts origins                                                        | `package.json`, `vite.config.ts` security headers, CI workflow          |
+| §6      | Application Security Life Cycle (ASLC)              | Secure coding (typed network contracts, no `eval`, no `dangerouslySetInnerHTML`); OWASP-aware (§6.7)                                                      | `bfsi-security-reviewer` output; `dangerouslySetInnerHTML` audit        |
 | §6.3    | Secure coding practices                             | No secrets in source                                                                                                                        | `scan-secrets.sh` hook; `bfsi-security-reviewer` Pass 1                 |
 | §6.4    | Session management, audit trail, exception handling | Idle timeout, sanitised error messages; backend owns the audit trail                                                                        | `<ProtectedRoute idleTimeout>`, error boundary                          |
 | §6.7    | OWASP-driven defence-in-depth                       | OWASP Top 10 mappings; multi-layer protections                                                                                              | [`references/owasp-top-10-2024.md`](../references/owasp-top-10-2024.md) |
-| §7      | Patch / Vulnerability / Change management           | Dependency updates current; `pnpm audit` clean; CI gates on new advisories                                                                  | `package.json`, CI workflow                                             |
+| §7      | Patch / Vulnerability / Change management           | Dependency updates current; `npm audit` clean; CI gates on new advisories                                                                  | `package.json`, CI workflow                                             |
 | §8      | User Access Control / Management                    | Permission-gated routes; least privilege; centralised auth; tokens never in localStorage                                                    | `<ProtectedRoute permission=...>`, `setAuthToken` at login              |
 | §8.4    | Centralised auth + MFA risk-based                   | MFA on sensitive actions                                                                                                                    | `bfsi-confirm-modal --mfa`                                              |
 | §9      | Authentication Framework for Customers              | Bank-to-customer identity verification cues                                                                                                 | Verified-merchant badges, anti-phishing UI                              |
@@ -58,8 +58,8 @@ The user will specify scope. If they say "compliance audit", default to **RBI An
 | §3.5.1 _(was §3.4)_            | PAN unreadable when stored                    | Tokens / PCITokenizedCardInput (v0.2) — never raw PAN in the SPA                   |
 | §4.2.1                         | Strong cryptography in transit                | HSTS / TLS — `vite.config` security headers, deployment config                     |
 | §6.2.1                         | Bespoke / custom software developed securely  | OWASP-aware coding; `bfsi-architect` + `bfsi-security-reviewer`                    |
-| §6.2.4 _(was §6.5.1/.7/.10)_   | Injection / XSS / broken auth defences        | Zod parsing on response, no `dangerouslySetInnerHTML`, no `eval`, session controls |
-| §6.3.3                         | Patch components within 1 month for critical  | `pnpm audit` in CI; Renovate / Dependabot                                          |
+| §6.2.4 _(was §6.5.1/.7/.10)_   | Injection / XSS / broken auth defences        | React output encoding + typed network contracts (`types.ts`), no `dangerouslySetInnerHTML`, no `eval`, session controls |
+| §6.3.3                         | Patch components within 1 month for critical  | `npm audit` in CI; Renovate / Dependabot                                          |
 | §6.4.1 / §6.4.3                | Public-facing web app + JavaScript on payment | CSP `script-src`, SRI on payment-page scripts; payment-iframe approach             |
 | §8.2.1 / §8.2.2                | Unique user IDs                               | No shared accounts; per-user JWT                                                   |
 | §8.3.x                         | Authentication factor strength                | Backend-enforced; UI surfaces password policy                                      |
@@ -85,7 +85,7 @@ The user will specify scope. If they say "compliance audit", default to **RBI An
 | CC6.1 | Logical access       | Auth + RBAC                  |
 | CC6.6 | Encryption at rest   | secureStorage usage          |
 | CC7.3 | Detection & response | Audit + error monitoring     |
-| PI1.1 | Processing integrity | Zod parsing on all responses |
+| PI1.1 | Processing integrity | Typed network contracts (`types.ts`); Zod-validated form input + env |
 
 ## Methodology
 

@@ -111,7 +111,7 @@ Generate column headers + empty-state messages in `en.json` / `hi.json` via the 
 
 ### Step 7 — Verify
 
-Run `pnpm typecheck` + the new tests.
+Run `npm run typecheck` + the new tests.
 
 ## Conventions enforced
 

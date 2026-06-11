@@ -71,7 +71,7 @@ After insertion, re-sort each locale's keys lexicographically per level so diffs
 
 ### Step 5 — Verify
 
-Run `pnpm test src/i18n` if test files exist (the templates ship a basic key-completeness test). Surface any failures.
+Run `npm test src/i18n` if test files exist (the templates ship a basic key-completeness test). Surface any failures.
 
 ### Step 6 — Suggest usage
 

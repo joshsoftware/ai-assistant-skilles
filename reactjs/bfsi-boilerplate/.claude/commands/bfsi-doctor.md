@@ -14,7 +14,7 @@ Run each check, report status (✅ / ⚠️ / ❌), and remediation for any fail
 ### Environment
 
 1. **Node version** — `node --version`. Should be ≥ 20.11.0.
-2. **pnpm version** — `pnpm --version`. Should be ≥ 11.0.0.
+2. **npm version** — `npm --version`. Should be ≥ 10 (bundled with Node ≥ 20).
 3. **Git** — `git --version`. Any modern git.
 4. **In a project root** — check for `package.json` in `$CLAUDE_PROJECT_DIR`.
 
@@ -47,7 +47,7 @@ Run each check, report status (✅ / ⚠️ / ❌), and remediation for any fail
    - `tailwindcss`, `autoprefixer`, `postcss`
    - `vitest`, `@testing-library/react`
 
-2. **No duplicate React** — `pnpm why react` should show one version.
+2. **No duplicate React** — `npm ls react` should show one version.
 
 ### BFSI conventions
 

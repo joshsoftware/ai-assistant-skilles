@@ -13,7 +13,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 </QueryClientProvider>;
 ```
 
-`@tanstack/react-query-devtools` is in `devDependencies` and Vite tree-shakes it out of the production bundle as long as the import is gated behind `import.meta.env.DEV`. Confirm with `pnpm build && grep -r 'ReactQueryDevtools' dist/`.
+`@tanstack/react-query-devtools` is in `devDependencies` and Vite tree-shakes it out of the production bundle as long as the import is gated behind `import.meta.env.DEV`. Confirm with `npm run build && grep -r 'ReactQueryDevtools' dist/`.
 
 ## Debugging workflow
 
@@ -45,7 +45,7 @@ When something feels wrong with caching/refetching:
 Risk: devtools expose query payloads, including PII. Even though they only render `import.meta.env.DEV`, double-check:
 
 ```bash
-pnpm build
+npm run build
 grep -r 'ReactQueryDevtools' dist/        # should be empty
 grep -r 'TanStack Query' dist/             # should be empty
 ```

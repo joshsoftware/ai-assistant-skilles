@@ -75,7 +75,7 @@ This is NOT a security review (use `bfsi-security-reviewer` for that). It's a ge
 
 ### BFSI conventions
 
-- API responses without Zod parse
+- Network shapes typed as `any` instead of `types.ts` interfaces; or a `.parse()` added on an API response (responses are not runtime-validated by default — Zod is for form input in `utils.ts` + env only)
 - PII fields without `<PIIMaskedDisplay>`
 - Routes without `<ProtectedRoute>` + `permission`
 - Storage of sensitive data outside `secureStorage`

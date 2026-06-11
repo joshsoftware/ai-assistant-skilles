@@ -91,7 +91,7 @@ import { ProtectedRoute } from '@/routes/ProtectedRoute';
 
 ### Step 4 — Apply the wrap + verify
 
-Edit the route element. Run `pnpm typecheck` on the changed file.
+Edit the route element. Run `npm run typecheck` on the changed file.
 
 ### Step 5 — Register the permission
 

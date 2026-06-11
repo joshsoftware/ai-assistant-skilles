@@ -136,10 +136,10 @@ Common bloat sources:
 - **`lodash`** wholesale (`import _ from 'lodash'`) — 71 KB gzipped. Switch to `lodash-es` + per-fn imports (`import debounce from 'lodash-es/debounce'`) or `radash` / native equivalents.
 - **`moment`** — 75 KB gzipped, deprecated. Switch to `date-fns` (tree-shakeable) or `dayjs` (2 KB).
 - **`@mui/icons-material`** wholesale — barrel re-export of 6000+ icons. Use per-icon imports (`import HomeIcon from '@mui/icons-material/Home'`) or switch to `lucide-react` (tree-shakeable).
-- **Two date libs / two HTTP libs / two state libs** — pick one. Run `pnpm why <pkg>` to find the offender.
+- **Two date libs / two HTTP libs / two state libs** — pick one. Run `npm ls <pkg>` to find the offender.
 - **Polyfills** for browsers you don't target. Set `build.target` in `vite.config.ts` to the lowest browser you support; Vite drops polyfills above that.
 
-Run `pnpm dlx vite-bundle-visualizer` (or your project's `pnpm build --analyze` if wired) before merging anything that adds a top-level dep > 50 KB minified.
+Run `npx vite-bundle-visualizer` (or your project's `npm run build --analyze` if wired) before merging anything that adds a top-level dep > 50 KB minified.
 
 ## Heavy components
 

@@ -22,7 +22,7 @@ Uncommitted changes:
 ${DIRTY:-(clean working tree)}
 
 BFSI conventions in effect:
-  - All API responses go through Zod parse
+  - Network request/response shapes are TS interfaces (types.ts); Zod validates form input (utils.ts) + env only — responses are NOT runtime-validated
   - All routes use <ProtectedRoute permission=...>
   - PII fields display via <PIIMaskedDisplay>
   - No card data in HTML inputs (use <PCITokenizedCardInput>)

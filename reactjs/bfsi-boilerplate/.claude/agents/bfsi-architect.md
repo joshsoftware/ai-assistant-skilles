@@ -86,9 +86,9 @@ Explicitly call out:
 How does the developer know it works end-to-end?
 
 ```
-1. pnpm typecheck — must pass
-2. pnpm test — new tests green
-3. pnpm dev → visit /<feature> → confirm:
+1. npm run typecheck — must pass
+2. npm test — new tests green
+3. npm run dev → visit /<feature> → confirm:
    a. Empty list renders
    b. Submit form → success toast → navigate to detail
    c. Network tab shows Idempotency-Key header
