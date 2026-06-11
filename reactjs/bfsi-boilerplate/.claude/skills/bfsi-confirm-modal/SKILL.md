@@ -69,7 +69,7 @@ The modal's title/description come from i18n keys (BFSI screens are typically mu
 
 ### Step 5 — Apply the wrap + verify
 
-Edit the file. Run `pnpm typecheck` and `pnpm test` on the changed file.
+Edit the file. Run `npm run typecheck` and `npm test` on the changed file.
 
 If `--mfa`, additionally verify:
 

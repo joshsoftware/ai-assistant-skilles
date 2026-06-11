@@ -5,7 +5,7 @@ description: Write Vitest + React Testing Library unit tests for a feature's sch
 
 # Testing Patterns (TanStack variant)
 
-The scaffolded project ships Vitest + React Testing Library wired into [vite.config.ts](../../../vite.config.ts). Tests are organized in `__tests__` folders that mirror the source structure (`src/` layout mirrors in `__tests__/` layout). Run with `pnpm test` (CI) or `pnpm test:watch` (dev).
+The scaffolded project ships Vitest + React Testing Library wired into [vite.config.ts](../../../vite.config.ts). Tests are organized in `__tests__` folders that mirror the source structure (`src/` layout mirrors in `__tests__/` layout). Run with `npm test` (CI) or `npm run test:watch` (dev).
 
 ## File map
 

@@ -76,8 +76,8 @@ The script writes all files using the templates in `references/templates/`.
 
 After generation:
 
-1. Run `pnpm typecheck` and report any errors.
-2. Run `pnpm lint` on the new files only.
+1. Run `npm run typecheck` and report any errors.
+2. Run `npm run lint` on the new files only.
 3. Read the generated `routes.tsx` and confirm it's registered.
 
 ### Step 4: Summarise
@@ -86,7 +86,7 @@ Output a short summary to the user:
 
 - N files created
 - Routes registered: `/<feature>` and `/<feature>/:id`
-- Next step suggestion: "Run `pnpm dev` and visit /<feature> to see the empty list. Then add fields to `schema.ts`."
+- Next step suggestion: "Run `npm run dev` and visit /<feature> to see the empty list. Then add fields to `schema.ts`."
 
 ## Conventions enforced
 

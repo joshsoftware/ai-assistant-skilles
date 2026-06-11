@@ -66,7 +66,7 @@ Pick a name following the convention: `<feature>.<entity>.<action>`. For GET end
 
 ### Step 7: Verify
 
-Run `pnpm typecheck`. If the Zod schemas have placeholder shapes, flag it: "I've added the endpoint but the response schema is a placeholder. Open `schema.ts` and define the response shape."
+Run `npm run typecheck`. If the Zod schemas have placeholder shapes, flag it: "I've added the endpoint but the response schema is a placeholder. Open `schema.ts` and define the response shape."
 
 ## Conventions
 

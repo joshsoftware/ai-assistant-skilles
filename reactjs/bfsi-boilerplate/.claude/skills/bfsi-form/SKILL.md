@@ -69,7 +69,7 @@ If a field name doesn't match a preset, fall back to `z.string().min(1)` and fla
 Use the template at `references/templates/form.tsx.tpl`. Wire `useForm` from
 `react-hook-form` with `zodResolver` from `@hookform/resolvers/zod`, and
 compose the JSX from shadcn/ui's `<Form>` primitive (already installed at
-`src/components/ui/form.tsx` via `pnpm dlx shadcn-ui@latest add form`).
+`src/components/ui/form.tsx` via `npx shadcn-ui@latest add form`).
 
 Import the project's `@react-vault/ui` (for `PIIMaskedDisplay`) and
 `@react-vault/core` (for shared types / regex) as needed.
@@ -80,12 +80,12 @@ Add label/placeholder/error keys to the project's translation files (en.json + h
 
 ### Step 5: Verify
 
-Run `pnpm typecheck` on the new file. If imports fail:
+Run `npm run typecheck` on the new file. If imports fail:
 
 - `react-hook-form` / `@hookform/resolvers/zod` missing →
-  `pnpm add react-hook-form zod @hookform/resolvers`
+  `npm install react-hook-form zod @hookform/resolvers`
 - `@/components/ui/form` missing →
-  `pnpm dlx shadcn-ui@latest add form`
+  `npx shadcn-ui@latest add form`
 - `@react-vault/ui` missing → check that the workspace dep is wired in
   the project's `package.json`.
 

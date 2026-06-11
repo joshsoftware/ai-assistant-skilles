@@ -73,7 +73,7 @@ import { PIIMaskedDisplay } from '@/components/bfsi';
 
 ### Step 4: Replace + verify
 
-Edit the file. Run `pnpm typecheck` on the changed file. Report success.
+Edit the file. Run `npm run typecheck` on the changed file. Report success.
 
 ## When NOT to use
 

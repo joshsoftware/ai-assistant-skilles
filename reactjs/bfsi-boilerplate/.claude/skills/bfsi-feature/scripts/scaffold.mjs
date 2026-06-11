@@ -124,7 +124,7 @@ async function main() {
   );
 
   log(`done: feature "${Name}" scaffolded under src/features/${Name}/`);
-  log(`next: pnpm typecheck && pnpm lint --filter ${kebab}`);
+  log(`next: npm run typecheck && npm run lint`);
 }
 
 main().catch((err) => {

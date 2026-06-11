@@ -69,7 +69,7 @@ Use `/bfsi-commit` — generates a Conventional Commits message.
 ## Critical conventions
 
 1. **Container-component split**: containers hold side-effects (API calls, dispatch, navigation), components are pure JSX.
-2. **All API responses are Zod-parsed**: runtime safety. Never trust the network shape.
+2. **Network shapes are TypeScript interfaces** (`types.ts`, compile-time). Zod validates form input (`utils.ts`) + env (`env.ts`) only — API responses are NOT runtime-validated by default.
 3. **All routes are protected**: `<ProtectedRoute permission="...">`. Defaults to authenticated-only if `permission` omitted, but explicit is better.
 4. **PII never enters localStorage**: use `secureStorage` from `@<scope>/core/storage` (memory-first, sessionStorage fallback, encrypted IndexedDB option).
 5. **No card data in HTML inputs**: `<PCITokenizedCardInput>` is planned for `@<scope>/ui` v0.2. Until then, flag any plain card input in review and keep card capture off the SPA where possible (redirect to PCI-scoped iframe).

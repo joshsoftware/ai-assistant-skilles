@@ -56,7 +56,7 @@ For each finding: file:line, the offending substring (truncated to first 12 char
 
 ### Pass 5 — Input validation & XSS
 
-- API responses used without Zod parse → flag the endpoint
+- Form inputs / env not validated with Zod (form schema belongs in `utils.ts`; env in `env.ts`). Note: API *responses* are typed via `types.ts` interfaces and are NOT runtime-validated by default — do not flag a missing response `.parse()`.
 - `dangerouslySetInnerHTML` (always flag; check for sanitiser like DOMPurify)
 - `eval`, `new Function(...)`, `Function(...)` calls
 - HTML injected via `innerHTML`
@@ -116,7 +116,7 @@ For each finding: file:line, the offending substring (truncated to first 12 char
 ## Passed
 
 - ✅ No `dangerouslySetInnerHTML` introduced
-- ✅ All API responses Zod-parsed
+- ✅ Network shapes typed via `types.ts` interfaces; form input + env Zod-validated
 - ✅ No PII in console.\* calls
   ...
 

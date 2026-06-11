@@ -61,7 +61,7 @@ Tickers, balance streams, transaction notifications — these can render-storm i
 
 - New top-level dependency in `package.json` over 50KB minified — flag with the size estimate (use `bundlephobia` mentally or note "look up size")
 - Dynamic import boundaries: every route should be a `lazy()` boundary; admin / settings routes should be separate chunks from customer routes
-- Duplicate transitive deps (e.g. two versions of `lodash` or `date-fns`) — suggest `pnpm dedupe`
+- Duplicate transitive deps (e.g. two versions of `lodash` or `date-fns`) — suggest `npm dedupe`
 - Importing the full `lodash` instead of `lodash/<fn>` (or better, `lodash-es`)
 
 ### 6. Network efficiency
@@ -160,7 +160,7 @@ const rowVirtualizer = useVirtualizer({ count: transactions.length, ... });
 - `Grep` for patterns like `useEffect.*\\[.*\\{`, `\.map\(`, `import \* as`, `lazy\(`, `useVirtualizer`
 - `Glob` to find `vite.config.ts`, `tsconfig.json`, `package.json` for perf-relevant config
 - `Bash` to:
-  - `pnpm ls <pkg>` for dependency sizes
+  - `npm ls <pkg>` for dependency sizes
   - `du -sh dist/assets/*.js` if a build exists
   - `git log --stat -- <file>` to see how the file has evolved (sometimes perf debt is layered over time)
 
@@ -169,5 +169,5 @@ const rowVirtualizer = useVirtualizer({ count: transactions.length, ... });
 - You report findings. You do NOT make code changes.
 - You are NOT a substitute for real measurement (Lighthouse, Chrome DevTools Performance panel, React Profiler). Say so if asked to give a definitive perf number.
 - For findings where the cost is unclear, surface them as P2 with a "measure before fixing" note rather than flagging as P0.
-- Flag bundle-size estimates as estimates; recommend `pnpm size` or `bundlephobia` for confirmation.
+- Flag bundle-size estimates as estimates; recommend `npm run analyze` (rollup-plugin-visualizer) or `bundlephobia` for confirmation.
 - If you find a P0 that's also a security issue (e.g. excessive memory retention of PII because of a cache leak), flag as P0 and recommend running `bfsi-security-reviewer` for the security angle.

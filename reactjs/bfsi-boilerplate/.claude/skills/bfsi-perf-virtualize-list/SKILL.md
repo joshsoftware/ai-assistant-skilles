@@ -110,10 +110,10 @@ If the file uses something other than `<table>` (e.g. a `<ul>` of cards), adapt 
 ### Step 2 — Confirm `@tanstack/react-virtual` is installed
 
 ```bash
-pnpm ls @tanstack/react-virtual
+npm ls @tanstack/react-virtual
 ```
 
-If absent, output the install command rather than running it: `pnpm add @tanstack/react-virtual`. Don't silently mutate `package.json`.
+If absent, output the install command rather than running it: `npm install @tanstack/react-virtual`. Don't silently mutate `package.json`.
 
 ### Step 3 — Pick the row-height estimate
 
@@ -149,7 +149,7 @@ Add:
 
 ### Step 5 — Verify
 
-- `pnpm typecheck` on the changed file.
+- `npm run typecheck` on the changed file.
 - Open the page, scroll fast — no blank flashes; if there are, bump `overscan` or check `estimateSize`.
 - Check screen-reader behaviour: each row should be announced with its position.
 - Open React DevTools Profiler — record a scroll, the commit duration should be ~constant regardless of `rows.length`. If it scales with `rows.length`, the virtualiser isn't wired correctly.

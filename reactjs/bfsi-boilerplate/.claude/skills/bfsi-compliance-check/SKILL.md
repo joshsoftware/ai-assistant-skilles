@@ -32,7 +32,7 @@ Static compliance scan over the current branch's diff (`git diff origin/main...H
 8. **`dangerouslySetInnerHTML`** without sanitisation
 9. **Missing `<ProtectedRoute>`** on a route that fetches user data
 10. **Missing `permission` prop** on `<ProtectedRoute>` (defaults to authenticated-only)
-11. **Missing Zod parse on API response** — `query` without `transformResponse: z.parse(...)`
+11. **Untyped network shape** — service/hook returning `any` instead of a `types.ts` interface (responses are typed at compile time, not runtime-validated; do not require a response `.parse()`)
 12. **`autocomplete="on"` on PII input field**
 13. **Form submit without idempotency-key header**
 
